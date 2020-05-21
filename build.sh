@@ -1,7 +1,12 @@
 #/bin/sh
 
+icrelease=19
+icupdate=5
+
+nodeversion=12.16.1
+
 docker build --pull \
-  --build-arg release=19 \
-  --build-arg update=5 \
-  -t playdingnow/node-oracle-ic:n12.16.1slim-ic19.5 \
+  --build-arg icrelease=${icrelease} \
+  --build-arg icupdate=${icupdate} \
+  -t playdingnow/node-oracle-ic:n${nodeversion}slim-ic${icrelease}.${icupdate} \
   .
