@@ -8,5 +8,6 @@ nodeversion=12.16.1
 docker build --pull \
   --build-arg icrelease=${icrelease} \
   --build-arg icupdate=${icupdate} \
+  --build-arg nodeversion=${nodeversion} \
   -t playdingnow/node-oracle-ic:n${nodeversion}slim-ic${icrelease}.${icupdate} \
   .
