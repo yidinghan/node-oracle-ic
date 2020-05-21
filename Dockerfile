@@ -1,18 +1,19 @@
-FROM oraclelinux:7-slim as builder
+ARG icrelease=19
+ARG icupdate=5
+ARG nodeversion=12.16.1
 
-ARG release=19
-ARG update=5
+FROM oraclelinux:7-slim as builder
 
 RUN yum -y install oracle-release-el7
 RUN yum-config-manager --enable ol7_oracle_instantclient
-RUN yum -y install oracle-instantclient${release}.${update}-basiclite
+RUN yum -y install oracle-instantclient${icrelease}.${icupdate}-basiclite
 
-RUN rm -rf /usr/lib/oracle/${release}.${update}/client64/bin
-WORKDIR /usr/lib/oracle/${release}.${update}/client64/lib/
+RUN rm -rf /usr/lib/oracle/${icrelease}.${icupdate}/client64/bin
+WORKDIR /usr/lib/oracle/${icrelease}.${icupdate}/client64/lib/
 RUN rm -rf *jdbc* *occi* *mysql* *jar
 
 # Get a new image
-FROM node:12.16.1-slim
+FROM node:${nodeversion}-slim
 
 # Copy the Instant Client libraries, licenses and config file from the previous image
 COPY --from=builder /usr/lib/oracle /usr/lib/oracle
