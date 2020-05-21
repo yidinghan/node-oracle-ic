@@ -1,8 +1,9 @@
-ARG icrelease=19
-ARG icupdate=5
 ARG nodeversion=12.16.1
 
 FROM oraclelinux:7-slim as builder
+
+ARG icrelease=19
+ARG icupdate=5
 
 RUN yum -y install oracle-release-el7
 RUN yum-config-manager --enable ol7_oracle_instantclient
