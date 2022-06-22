@@ -1,4 +1,4 @@
-ARG nodeversion=12.16.1
+ARG nodeversion=16.15.1
 
 FROM oraclelinux:7-slim as builder
 
